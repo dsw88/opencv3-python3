@@ -13,3 +13,13 @@ def draw_rectangle(img, top_left, bottom_right, color):
 def convert_to_grayscale(image_src, image_dest):
     img = load_image(image_src, cv2.IMREAD_GRAYSCALE)
     save_image(img, image_dest)
+
+def resize(img, dimension):
+    return cv2.resize(img, dimension, interpolation = cv2.INTER_AREA)
+
+def rotate(img, degrees):
+    (h, w) = img.shape[:2]
+    center = (w/2, h/2)
+    M = cv2.getRotationMatrix2D(center, degrees, 1.0)
+    return cv2.warpAffine(img, M, (w,h))
+    

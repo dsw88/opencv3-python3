@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 # Install OpenCV
 RUN apt-get update \
-  && apt-get install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev python3 python3.5-dev wget unzip python3-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev \
+  && apt-get install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev python3 python3-pip python3.5-dev wget unzip python3-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev \
   && cd /opt \
   && wget https://github.com/Itseez/opencv/archive/3.1.0.zip \ 
   && unzip 3.1.0.zip \
@@ -14,6 +14,7 @@ RUN apt-get update \
   && make install \
   && cd .. \
   && rm -rf build \
-  && apt-get remove -y unzip wget
+  && apt-get remove -y unzip wget \
+  && pip3 install scikit-image scipy beautifulsoup4 requests mahotas
 
 CMD /bin/bash
